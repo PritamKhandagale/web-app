@@ -2,7 +2,7 @@ pipeline {
   agent any
 
   stages {
-    stage('Checkout') {
+    stage('Clone Repo') {
       steps {
         git 'https://github.com/PritamKhandagale/web-app.git'
       }
@@ -10,17 +10,17 @@ pipeline {
 
     stage('Install Dependencies') {
       steps {
-        sh 'pip install -r requirements.txt'  // or `npm install`
+        sh 'pip install -r requirements.txt'
       }
     }
 
     stage('Run Tests') {
       steps {
-        sh 'pytest tests/'  // or `npm test`
+        sh 'pytest tests/'
       }
     }
 
-    stage('Archive Results') {
+    stage('Archive Artifacts') {
       steps {
         archiveArtifacts artifacts: '**/*.py', allowEmptyArchive: true
       }
